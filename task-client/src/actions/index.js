@@ -1,0 +1,7 @@
+export const AddTask = '[TASK] Add'
+export const RemoveTask = '[TASK] Remove'
+export const EditTask = '[TASK] Edit'
+export const setEdit = '[TASK] Editing'
+export const setFilter = '[TASK] Filter'
+export const ToggleTask = '[TASK] Toggle'
+export const NotificationTask = '[TASK] Notification'
