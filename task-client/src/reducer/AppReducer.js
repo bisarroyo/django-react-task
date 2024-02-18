@@ -5,7 +5,8 @@ import {
   EditTask,
   setFilter,
   ToggleTask,
-  NotificationTask
+  NotificationTask,
+  Loading
 } from '../actions'
 
 const initialState = []
@@ -13,6 +14,12 @@ const initialState = []
 export const AppReducer = (state = initialState, action) => {
   let data = null
   switch (action.type) {
+    case Loading:
+      data = {
+        ...state,
+        loading: true
+      }
+      return data
     case AddTask:
       data = {
         ...state,
@@ -20,7 +27,8 @@ export const AppReducer = (state = initialState, action) => {
         notification: {
           text: 'TODO added',
           type: 'success'
-        }
+        },
+        loading: false
       }
       return data
 

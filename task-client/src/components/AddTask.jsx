@@ -1,3 +1,4 @@
+import { useAppContext } from '../hooks/useAppContext'
 import { useForm } from '../hooks/useForm'
 import { useTask } from '../hooks/useTask'
 
@@ -7,6 +8,7 @@ function AddTask({ onNewTask }) {
     done: false,
     deleted: false
   })
+  const { loading } = useAppContext()
 
   const { handleFilterTask } = useTask()
 
@@ -31,6 +33,7 @@ function AddTask({ onNewTask }) {
       <div className='add-submenu'>
         <input type='submit' className='add-btn' value='add' />
       </div>
+      {loading}
     </form>
   )
 }

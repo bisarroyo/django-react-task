@@ -5,7 +5,8 @@ import {
   EditTask,
   setFilter,
   ToggleTask,
-  NotificationTask
+  NotificationTask,
+  Loading
 } from '../actions'
 import { useAppContext } from './useAppContext'
 import apiTask from '../api/task.api'
@@ -15,7 +16,8 @@ export const useTask = () => {
 
   const { getAllTasks, getTask, createTask, deleteTask, updateTask } = apiTask
 
-  const handleAddTask = (task) => {
+  const handleAddTask = async (task) => {
+    dispatch(Loading)
     const action = {
       type: AddTask,
       payload: task
