@@ -1,21 +1,21 @@
 import { useForm } from '../hooks/useForm'
 import { useTask } from '../hooks/useTask'
 
-function AddTask({ onNewTodo }) {
+function AddTask({ onNewTask }) {
   const { description, form, handleChange, handleReset } = useForm({
     description: '',
     done: false,
     deleted: false
   })
 
-  const { handleFilterTodo } = useTask()
+  const { handleFilterTask } = useTask()
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (description.length <= 3) return
-    onNewTodo(form)
+    onNewTask(form)
     handleReset()
-    handleFilterTodo('pending')
+    handleFilterTask('pending')
   }
 
   return (
@@ -24,7 +24,7 @@ function AddTask({ onNewTodo }) {
         className='add-input'
         type='text'
         name='description'
-        placeholder='Add a new Todo'
+        placeholder='Add a new Task'
         value={description}
         onChange={handleChange}
       />

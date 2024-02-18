@@ -1,9 +1,9 @@
 import { Toaster } from 'react-hot-toast'
 
 import AddTask from '../components/AddTask'
-// import { TodosList } from '../containers/TodosList'
-// import { Edit } from '../components/Edit'
-// import { Filter } from '../components/Filter'
+import { TasksList } from '../components/TasksList'
+import { Filter } from '../components/Filter'
+import { EditTask } from '../components/EditTask'
 
 import { UseNotification } from '../hooks/useNotificarions'
 
@@ -12,35 +12,31 @@ import { useTask } from '../hooks/useTask'
 export default function TasksPage() {
   UseNotification()
   const {
-    todos,
-    handleAddTodo,
-    handleRemoveTodo,
-    handleRemoveTodoPermanent,
+    tasks,
+    handleAddTask,
+    handleRemoveTask,
     setEditing,
-    handleEditTodo,
-    handleToggleTodo,
-    handleStarredTodo
+    handleEditTask,
+    handleToggleTask
   } = useTask()
 
   return (
     <>
       <section>
         <h1>My day</h1>
-        <AddTask onNewTodo={handleAddTodo} />
-        {/* <Filter />
-        <TodosList
-          todos={todos}
-          handleDelete={handleRemoveTodo}
-          handleDeletePermanent={handleRemoveTodoPermanent}
+        <AddTask onNewTask={handleAddTask} />
+        <Filter />
+        <TasksList
+          tasks={tasks}
+          handleDelete={handleRemoveTask}
           handleEdit={setEditing}
-          handleToggle={handleToggleTodo}
-          handleStarred={handleStarredTodo}
-        /> */}
+          handleToggle={handleToggleTask}
+        />
       </section>
-      {/* <section>
+      <section>
         <h2>Info</h2>
-        <Edit handleEdit={handleEditTodo} />
-      </section> */}
+        <EditTask handleEdit={handleEditTask} />
+      </section>
       <Toaster />
     </>
   )

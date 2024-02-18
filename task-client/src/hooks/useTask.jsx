@@ -8,9 +8,12 @@ import {
   NotificationTask
 } from '../actions'
 import { useAppContext } from './useAppContext'
+import apiTask from '../api/task.api'
 
 export const useTask = () => {
   const { tasks, dispatch } = useAppContext()
+
+  const { getAllTasks, getTask, createTask, deleteTask, updateTask } = apiTask
 
   const handleAddTask = (task) => {
     const action = {

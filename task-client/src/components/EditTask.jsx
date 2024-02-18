@@ -2,9 +2,8 @@ import { useEffect } from 'react'
 import { MdCheck } from 'react-icons/md'
 import { useAppContext } from '../hooks/useAppContext'
 import { useForm } from '../hooks/useForm'
-import { EditStyle } from './EditStyle'
 
-export const Edit = ({ handleEdit }) => {
+export const EditTask = ({ handleEdit }) => {
   const { editing } = useAppContext()
 
   const initialLoad = {
@@ -29,7 +28,7 @@ export const Edit = ({ handleEdit }) => {
   }
 
   return (
-    <EditStyle onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div
         className={!editing.id ? 'edit-container disabled' : 'edit-container'}
       >
@@ -44,6 +43,6 @@ export const Edit = ({ handleEdit }) => {
           <MdCheck />
         </button>
       </div>
-    </EditStyle>
+    </form>
   )
 }

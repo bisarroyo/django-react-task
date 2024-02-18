@@ -3,7 +3,7 @@ import { AppReducer } from '../reducer/AppReducer.js'
 import { AppContext } from './AppContext'
 
 const initialState = {
-  todos: [],
+  tasks: [],
   editing: {},
   filtering: '',
   loading: false,
@@ -17,12 +17,12 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
-  const { todos, editing, filtering, loading, error, notification } = state
+  const { tasks, editing, filtering, loading, error, notification } = state
 
   return (
     <AppContext.Provider
       value={{
-        todos,
+        tasks,
         editing,
         filtering,
         loading,

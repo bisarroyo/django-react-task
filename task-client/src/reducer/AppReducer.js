@@ -8,10 +8,6 @@ import {
   NotificationTask
 } from '../actions'
 
-import apiTask from '../api/task.api'
-
-const { getAllTasks, getTask, createTask, deleteTask, updateTask } = apiTask
-
 const initialState = []
 
 export const AppReducer = (state = initialState, action) => {
@@ -20,13 +16,12 @@ export const AppReducer = (state = initialState, action) => {
     case AddTask:
       data = {
         ...state,
-        todos: [...state.todos, action.payload],
+        tasks: [...state.tasks, action.payload],
         notification: {
           text: 'TODO added',
           type: 'success'
         }
       }
-      createTask(action.payload)
       return data
 
     case RemoveTask:

@@ -1,13 +1,12 @@
+/* eslint-disable react/prop-types */
 import { Item } from '../components/Item'
 import { useAppContext } from '../hooks/useAppContext'
 
-export const TodosList = ({
-  todos,
+export const TasksList = ({
+  tasks,
   handleDelete,
-  handleDeletePermanent,
   handleEdit,
-  handleToggle,
-  handleStarred
+  handleToggle
 }) => {
   const { filtering } = useAppContext()
 
@@ -30,15 +29,13 @@ export const TodosList = ({
   }
   return (
     <div>
-      {todos.filter(filterTodos).map((todo) => (
-        <div key={todo.id}>
+      {tasks.filter(filterTodos).map((task) => (
+        <div key={task.id}>
           <Item
-            todo={todo}
+            task={task}
             handleDelete={handleDelete}
-            handleDeletePermanent={handleDeletePermanent}
             handleEdit={handleEdit}
             handleToggle={handleToggle}
-            handleStarred={handleStarred}
           />
         </div>
       ))}
