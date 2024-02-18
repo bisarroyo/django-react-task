@@ -6,7 +6,8 @@ import {
   setFilter,
   ToggleTask,
   NotificationTask,
-  Loading
+  Loading,
+  Error
 } from '../actions'
 import { useAppContext } from './useAppContext'
 import apiTask from '../api/task.api'
@@ -17,12 +18,21 @@ export const useTask = () => {
   const { getAllTasks, getTask, createTask, deleteTask, updateTask } = apiTask
 
   const handleAddTask = async (task) => {
-    dispatch(Loading)
-    const action = {
-      type: AddTask,
-      payload: task
+    dispatch({ type: Loading })
+    try {
+      await createTask(task)
+      const action = {
+        type: AddTask,
+        payload: task
+      }
+      dispatch(action)
+    } catch (e) {
+      const action = {
+        type: Error,
+        payload: 'Error syncsing the task'
+      }
+      dispatch(action)
     }
-    dispatch(action)
   }
 
   const handleRemoveTask = (id) => {

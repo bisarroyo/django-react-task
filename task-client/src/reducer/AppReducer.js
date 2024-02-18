@@ -6,7 +6,8 @@ import {
   setFilter,
   ToggleTask,
   NotificationTask,
-  Loading
+  Loading,
+  Error
 } from '../actions'
 
 const initialState = []
@@ -14,6 +15,13 @@ const initialState = []
 export const AppReducer = (state = initialState, action) => {
   let data = null
   switch (action.type) {
+    case Error:
+      data = {
+        ...state,
+        error: action.payload,
+        loading: false
+      }
+      return data
     case Loading:
       data = {
         ...state,

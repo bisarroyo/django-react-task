@@ -29,8 +29,8 @@ export const TasksList = ({
   }
   return (
     <div>
-      {tasks.filter(filterTodos).map((task) => (
-        <div key={task.id}>
+      {tasks.filter(filterTodos).map((task, index) => (
+        <div key={index}>
           <Item
             task={task}
             handleDelete={handleDelete}

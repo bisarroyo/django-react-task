@@ -8,7 +8,7 @@ function AddTask({ onNewTask }) {
     done: false,
     deleted: false
   })
-  const { loading } = useAppContext()
+  const { loading, error } = useAppContext()
 
   const { handleFilterTask } = useTask()
 
@@ -25,6 +25,14 @@ function AddTask({ onNewTask }) {
       <input
         className='add-input'
         type='text'
+        name='title'
+        placeholder='Add task title'
+        value={description}
+        onChange={handleChange}
+      />
+      <input
+        className='add-input'
+        type='text'
         name='description'
         placeholder='Add a new Task'
         value={description}
@@ -33,7 +41,6 @@ function AddTask({ onNewTask }) {
       <div className='add-submenu'>
         <input type='submit' className='add-btn' value='add' />
       </div>
-      {loading}
     </form>
   )
 }
