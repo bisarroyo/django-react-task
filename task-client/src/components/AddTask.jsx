@@ -17,7 +17,6 @@ function AddTask({ onNewTask }) {
     onNewTask(form)
     handleReset()
     handleFilterTask('pending')
-    console.log(form)
   }
 
   return (

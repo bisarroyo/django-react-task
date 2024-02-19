@@ -23,7 +23,7 @@ export default function TasksPage() {
   return (
     <>
       <section>
-        <h1>My day</h1>
+        <h1>My tasks</h1>
         <AddTask onNewTask={handleAddTask} />
         <Filter />
         <TasksList
