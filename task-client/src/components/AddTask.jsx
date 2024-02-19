@@ -3,12 +3,14 @@ import { useForm } from '../hooks/useForm'
 import { useTask } from '../hooks/useTask'
 
 function AddTask({ onNewTask }) {
-  const { description, form, handleChange, handleReset } = useForm({
+  const { title, description, form, handleChange, handleReset } = useForm({
+    title: '',
     description: '',
-    done: false,
-    deleted: false
+    done: false
   })
-  const { loading, error } = useAppContext()
+  const { tasks } = useAppContext()
+
+  console.log(tasks)
 
   const { handleFilterTask } = useTask()
 
@@ -18,6 +20,7 @@ function AddTask({ onNewTask }) {
     onNewTask(form)
     handleReset()
     handleFilterTask('pending')
+    console.log(form)
   }
 
   return (
@@ -27,7 +30,7 @@ function AddTask({ onNewTask }) {
         type='text'
         name='title'
         placeholder='Add task title'
-        value={description}
+        value={title}
         onChange={handleChange}
       />
       <input

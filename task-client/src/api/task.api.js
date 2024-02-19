@@ -8,7 +8,7 @@ const getAllTasks = () => taskApi.get('/')
 
 const getTask = (id) => taskApi.get(`/${id}/`)
 
-const createTask = (task) => taskApi.post(task)
+const createTask = (task) => taskApi.post('/', task)
 
 const deleteTask = (id) => taskApi.delete(`/${id}/`)
 

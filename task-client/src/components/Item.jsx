@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MdDelete, MdEdit, MdRestoreFromTrash } from 'react-icons/md'
 import { motion } from 'framer-motion'
 
@@ -20,7 +21,7 @@ export const Item = ({ task, handleDelete, handleEdit, handleToggle }) => {
             />
             <p
               className={`${task.done && 'todo-done'}`}
-              onClick={() => handleEdit(todo)}
+              onClick={() => handleEdit(task)}
             >
               {task.description}
             </p>
@@ -38,7 +39,7 @@ export const Item = ({ task, handleDelete, handleEdit, handleToggle }) => {
               </button>
             )}
 
-            <button onClick={() => handleEdit(todo)} disabled={task.done}>
+            <button onClick={() => handleEdit(task)} disabled={task.completed}>
               <MdEdit />
             </button>
           </div>

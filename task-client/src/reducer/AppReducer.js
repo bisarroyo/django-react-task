@@ -1,4 +1,5 @@
 import {
+  SetTasks,
   AddTask,
   RemoveTask,
   setEdit,
@@ -28,6 +29,19 @@ export const AppReducer = (state = initialState, action) => {
         loading: true
       }
       return data
+
+    case SetTasks:
+      data = {
+        ...state,
+        tasks: [action.payload],
+        notification: {
+          text: 'Tasks loaded',
+          type: 'success'
+        },
+        loading: false
+      }
+      return data
+
     case AddTask:
       data = {
         ...state,
@@ -43,21 +57,14 @@ export const AppReducer = (state = initialState, action) => {
     case RemoveTask:
       data = {
         ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload) {
-            return {
-              ...todo,
-              deleted: !todo.deleted
-            }
-          }
-          return todo
+        tasks: state.tasks.filter((task) => {
+          task.id !== action.payload
         }),
         notification: {
-          text: 'Moved to trash',
+          text: 'Task deleted',
           type: 'error'
         }
       }
-      window.localStorage.setItem('todos', JSON.stringify(data.todos))
       return data
 
     case setEdit:
@@ -69,21 +76,20 @@ export const AppReducer = (state = initialState, action) => {
     case EditTask:
       data = {
         ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload.id) {
+        todos: state.tasks.map((task) => {
+          if (task.id === action.payload.id) {
             return {
-              ...todo,
+              ...task,
               description: action.payload.description
             }
           }
-          return todo
+          return task
         }),
         notification: {
-          text: 'Todo modified',
+          text: 'Task modified',
           type: 'success'
         }
       }
-      window.localStorage.setItem('todos', JSON.stringify(data.todos))
       return data
 
     case setFilter:

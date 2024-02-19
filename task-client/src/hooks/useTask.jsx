@@ -1,4 +1,5 @@
 import {
+  SetTasks,
   AddTask,
   RemoveTask,
   setEdit,
@@ -17,13 +18,38 @@ export const useTask = () => {
 
   const { getAllTasks, getTask, createTask, deleteTask, updateTask } = apiTask
 
+  const handleSetTasks = async () => {
+    dispatch({ type: Loading })
+    try {
+      const { data } = await getAllTasks()
+      const action = {
+        type: SetTasks,
+        payload: data
+      }
+      dispatch(action)
+    } catch (e) {
+      const action = {
+        type: Error,
+        payload: 'Error getting all tasks'
+      }
+      dispatch(action)
+    }
+  }
+
   const handleAddTask = async (task) => {
     dispatch({ type: Loading })
     try {
-      await createTask(task)
+      const {
+        data: { id, title, description, completed }
+      } = await createTask(task)
       const action = {
         type: AddTask,
-        payload: task
+        payload: {
+          id,
+          title,
+          description,
+          completed
+        }
       }
       dispatch(action)
     } catch (e) {
@@ -35,12 +61,22 @@ export const useTask = () => {
     }
   }
 
-  const handleRemoveTask = (id) => {
-    const action = {
-      type: RemoveTask,
-      payload: id
+  const handleRemoveTask = async (id) => {
+    dispatch({ type: Loading })
+    try {
+      await deleteTask(id)
+      const action = {
+        type: RemoveTask,
+        payload: id
+      }
+      dispatch(action)
+    } catch (error) {
+      const action = {
+        type: Error,
+        payload: 'Error syncsing the task'
+      }
+      dispatch(action)
     }
-    dispatch(action)
   }
 
   const setEditing = (task) => {
@@ -51,15 +87,27 @@ export const useTask = () => {
     dispatch(action)
   }
 
-  const handleEditTask = (id, description) => {
-    const action = {
-      type: EditTask,
-      payload: {
-        id,
-        description
+  const handleEditTask = (id, task) => {
+    console.log(task)
+    dispatch({ type: Loading })
+    try {
+      const { data } = updateTask(id, task)
+      console.log(data)
+      const action = {
+        type: EditTask,
+        payload: {
+          id,
+          task
+        }
       }
+      dispatch(action)
+    } catch (error) {
+      const action = {
+        type: Error,
+        payload: 'Error syncsing the task'
+      }
+      dispatch(action)
     }
-    dispatch(action)
   }
   const handleFilterTask = (filter) => {
     const action = {
@@ -69,12 +117,22 @@ export const useTask = () => {
     dispatch(action)
   }
 
-  const handleToggleTask = (id) => {
-    const action = {
-      type: ToggleTask,
-      payload: id
+  const handleToggleTask = async (id) => {
+    dispatch({ type: Loading })
+    try {
+      await updateTask(id, { completed: true })
+      const action = {
+        type: ToggleTask,
+        payload: id
+      }
+      dispatch(action)
+    } catch (error) {
+      const action = {
+        type: Error,
+        payload: 'Error updating task'
+      }
+      dispatch(action)
     }
-    dispatch(action)
   }
 
   const handleNotification = () => {
@@ -87,6 +145,7 @@ export const useTask = () => {
 
   return {
     tasks,
+    handleSetTasks,
     handleAddTask,
     handleRemoveTask,
     setEditing,

@@ -11,15 +11,17 @@ export const EditTask = ({ handleEdit }) => {
     description: ''
   }
 
-  const { id, description, handleChange, setValues } = useForm({
+  const { id, form, handleChange, setValues } = useForm({
     id: '',
-    description: ''
+    description: '',
+    title: ''
   })
 
   useEffect(() => {
     setValues({
       id: editing.id,
-      description: editing.description
+      description: editing.description,
+      title: editing.title
     })
   }, [editing])
 
@@ -36,10 +38,10 @@ export const EditTask = ({ handleEdit }) => {
           type='text'
           name='description'
           onChange={handleChange}
-          value={description ?? initialLoad.description}
+          value={form.description ?? initialLoad.description}
           disabled={!editing.id}
         />
-        <button onClick={() => handleEdit(id, description)}>
+        <button onClick={() => handleEdit(id, form)}>
           <MdCheck />
         </button>
       </div>

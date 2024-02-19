@@ -15,17 +15,12 @@ export const TasksList = ({
       return item.deleted === true
     }
     if (filtering === 'pending') {
-      return item.done === false && item.deleted === false
-    }
-    if (filtering === 'starred') {
-      return (
-        item.starred === true && item.done === false && item.deleted === false
-      )
+      return item.completed === false
     }
     if (filtering === 'done') {
-      return item.done === true && item.deleted === false
+      return item.done === true
     }
-    return item.done === false && item.deleted === false
+    return item.done === false
   }
   return (
     <div>
