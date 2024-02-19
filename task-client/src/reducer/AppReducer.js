@@ -101,21 +101,20 @@ export const AppReducer = (state = initialState, action) => {
     case ToggleTask:
       data = {
         ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload) {
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.payload) {
             return {
-              ...todo,
-              done: !todo.done
+              ...task,
+              completed: !task.completed
             }
           }
-          return todo
+          return task
         }),
         notification: {
           text: 'TODO done',
           type: 'success'
         }
       }
-      window.localStorage.setItem('todos', JSON.stringify(data.todos))
       return data
 
     case NotificationTask:

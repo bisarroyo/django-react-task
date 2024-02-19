@@ -12,9 +12,6 @@ export const Filter = () => {
   const filterByPending = () => {
     handleFilterTask('pending')
   }
-  const filterByStarred = () => {
-    handleFilterTask('starred')
-  }
   const filterByDone = () => {
     handleFilterTask('done')
   }
@@ -32,12 +29,6 @@ export const Filter = () => {
         className={`${filtering === 'pending' && 'active-filter'}`}
       >
         Pending
-      </button>
-      <button
-        onClick={filterByStarred}
-        className={`${filtering === 'starred' && 'active-filter'}`}
-      >
-        Starred
       </button>
       <button
         onClick={filterByDone}

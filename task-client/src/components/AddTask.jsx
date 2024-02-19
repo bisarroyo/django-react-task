@@ -8,9 +8,6 @@ function AddTask({ onNewTask }) {
     description: '',
     done: false
   })
-  const { tasks } = useAppContext()
-
-  console.log(tasks)
 
   const { handleFilterTask } = useTask()
 

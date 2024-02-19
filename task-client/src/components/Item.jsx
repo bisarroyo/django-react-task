@@ -16,11 +16,13 @@ export const Item = ({ task, handleDelete, handleEdit, handleToggle }) => {
           <div className='item-info'>
             <input
               type='checkbox'
-              onChange={() => handleToggle(task.id)}
-              checked={task.done}
+              onChange={() =>
+                handleToggle({ ...task, completed: !task.completed })
+              }
+              checked={task.completed}
             />
             <p
-              className={`${task.done && 'todo-done'}`}
+              className={`${task.completed && 'todo-done'}`}
               onClick={() => handleEdit(task)}
             >
               {task.description}

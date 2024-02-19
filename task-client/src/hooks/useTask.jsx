@@ -117,13 +117,13 @@ export const useTask = () => {
     dispatch(action)
   }
 
-  const handleToggleTask = async (id) => {
+  const handleToggleTask = async (task) => {
     dispatch({ type: Loading })
     try {
-      await updateTask(id, { completed: true })
+      await updateTask(task.id, task)
       const action = {
         type: ToggleTask,
-        payload: id
+        payload: task.id
       }
       dispatch(action)
     } catch (error) {

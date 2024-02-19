@@ -18,9 +18,9 @@ export const TasksList = ({
       return item.completed === false
     }
     if (filtering === 'done') {
-      return item.done === true
+      return item.completed === true
     }
-    return item.done === false
+    return item.completed === false
   }
   return (
     <div>
