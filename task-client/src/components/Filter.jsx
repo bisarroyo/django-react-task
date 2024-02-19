@@ -6,9 +6,6 @@ export const Filter = () => {
 
   const { filtering } = useAppContext()
 
-  const filterByDeleted = () => {
-    handleFilterTask('deleted')
-  }
   const filterByPending = () => {
     handleFilterTask('pending')
   }
@@ -18,12 +15,6 @@ export const Filter = () => {
 
   return (
     <>
-      <button
-        onClick={filterByDeleted}
-        className={`${filtering === 'deleted' && 'active-filter'}`}
-      >
-        Deleted
-      </button>
       <button
         onClick={filterByPending}
         className={`${filtering === 'pending' && 'active-filter'}`}
